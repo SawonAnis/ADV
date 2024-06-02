@@ -1,0 +1,97 @@
+1.
+CREATE USER Dumbledore IDENTIFIED BY Phoenix;
+GRANT UNLIMITED TABLESPACE TO Dumbledore;
+GRANT CREATE TABLE TO Dumbledore;
+
+2.
+CREATE TABLE Student (
+    S_Id INT PRIMARY KEY,
+    S_Name VARCHAR(255),
+    S_CGPA DECIMAL(3, 2) CHECK (S_CGPA <= 4.00),
+    S_BloodStatus VARCHAR(255),
+    H_No INT,
+    FOREIGN KEY (H_No) REFERENCES House(H_No)
+);
+CREATE TABLE House (
+    H_Id INT PRIMARY KEY,
+    H_Name VARCHAR(255) NOT NULL,
+    H_Points INT
+);
+
+3.
+CREATE TABLE Student (
+    S_Id NUMBER PRIMARY KEY,
+    S_Name VARCHAR2(50),
+    S_CGPA NUMBER(3, 2) CHECK (S_CGPA <= 4.00),
+    S_BloodStatus VARCHAR2(50),
+    H_No NUMBER,
+    CONSTRAINT fk_house FOREIGN KEY (H_No) REFERENCES House(H_Id)
+);
+
+4.
+INSERT INTO House (H_Id, H_Name, H_Points)
+VALUES (11, 'Gryffindor', 892);
+
+INSERT INTO House (H_Id, H_Name, H_Points)
+VALUES (22, 'Hufflepuff', 785);
+
+INSERT INTO House (H_Id, H_Name, H_Points)
+VALUES (33, 'Ravenclaw', 789);
+
+INSERT INTO House (H_Id, H_Name, H_Points)
+VALUES (44, 'Slytherin', 850);
+
+
+INSERT INTO Student (S_Id, S_Name, S_CGPA, S_BloodStatus, H_No)
+VALUES (2, 'Harry', 3.45, 'Halfblood', 11);
+
+INSERT INTO Student (S_Id, S_Name, S_CGPA, S_BloodStatus, H_No)
+VALUES (7, 'Ron', 3.01, 'Pureblood', 11);
+
+INSERT INTO Student (S_Id, S_Name, S_CGPA, S_BloodStatus, H_No)
+VALUES (12, 'Hannah', NULL, 'Pureblood', 22);
+
+INSERT INTO Student (S_Id, S_Name, S_CGPA, S_BloodStatus, H_No)
+VALUES (17, 'Cedric', 3.78, 'Pureblood', 22);
+
+INSERT INTO Student (S_Id, S_Name, S_CGPA, S_BloodStatus, H_No)
+VALUES (22, 'Cho', 3.55, 'Muggleborn', 33);
+
+INSERT INTO Student (S_Id, S_Name, S_CGPA, S_BloodStatus, H_No)
+VALUES (27, 'Luna', 2.89, NULL, 33);
+
+INSERT INTO Student (S_Id, S_Name, S_CGPA, S_BloodStatus, H_No)
+VALUES (32, 'Draco', 3.88, 'Pureblood', 44);
+
+INSERT INTO Student (S_Id, S_Name, S_CGPA, S_BloodStatus, H_No)
+VALUES (37, 'Goyle', 2.10, 'Pureblood', 44);
+
+
+1.
+SELECT SUM(S_CGPA) AS Total_CGPA
+FROM Student;
+
+2.
+SELECT S_Name AS Student_Name, H_Name AS House_Name
+FROM Student
+JOIN House ON Student.H_No = House.H_Id;
+
+3.
+SELECT S_Name
+FROM Student
+WHERE S_Name LIKE 'H%';
+
+4.
+SELECT S_Name, S_CGPA
+FROM Student
+ORDER BY S_CGPA DESC;
+
+5.
+SELECT MAX(S_CGPA) AS Highest_CGPA
+FROM Student;
+
+
+
+
+
+

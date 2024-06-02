@@ -1,0 +1,39 @@
+1. CREATE SEQUENCE member_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    MAXVALUE 67
+    NOCACHE
+    NOCYCLE;
+
+2.  ALTER TABLE member RENAME TO members;
+
+3. SELECT Name
+FROM members
+ORDER BY Bill DESC
+FETCH FIRST 1 ROW ONLY;
+
+4.SELECT Name
+FROM members
+ORDER BY Bill ASC;
+
+5.SELECT Name
+FROM members
+WHERE Name LIKE 'A%';
+
+6.  SELECT T.Name AS TrainerName, T.specialty AS TrainerSpecialty, M.Name AS MemberName
+FROM Trainer T
+JOIN members M ON T.t_id = M.t_id
+WHERE T.t_id = 3;
+
+7.SELECT M.Name AS MemberName, M.Address AS MemberAddress
+FROM Trainer T
+JOIN members M ON T.t_id = M.t_id
+WHERE T.Name = 'Prioty';
+
+
+10. CREATE VIEW Info AS
+SELECT T.Name AS Trainer, T.specialty AS Specialty, M.Name AS Member
+FROM Trainer T
+JOIN members M ON T.t_id = M.t_id;
+
+
