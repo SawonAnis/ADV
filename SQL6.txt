@@ -1,0 +1,62 @@
+CREATE TABLE House (
+    H_Id INT PRIMARY KEY,
+    H_Name VARCHAR(50)
+);
+INSERT INTO House (H_Id, H_Name)
+VALUES
+    (11, 'Gryffindor'),
+    (22, 'Hufflepuff'),
+    (33, 'Ravenclaw'),
+    (44, 'Slytherin'),
+    (55, 'Harry');
+CREATE TABLE Student (
+    S_Id INT PRIMARY KEY,
+    S_Name VARCHAR(50),
+    H_No INT,
+    FOREIGN KEY (H_No) REFERENCES House(H_Id)
+);
+INSERT INTO Student (S_Id, S_Name, H_No)
+VALUES
+    (2, 'Harry', 11),
+    (7, 'Ron', 11),
+    (12, 'Hannah', 22),
+    (17, 'Cedric', 22),
+    (22, 'Cho', 33),
+    (27, 'Luna', 33),
+    (32, 'Draco', 44),
+    (37, 'Goyle', 44);
+
+1.
+CREATE SEQUENCE my_sequence
+    START WITH 2
+    INCREMENT BY 5
+    MAXVALUE 97
+    NOCACHE
+    NOCYCLE;
+
+2.
+CREATE INDEX idx_S_Id ON Student (S_Id);
+CREATE INDEX idx_S_Name ON Student (S_Name);
+3.
+SELECT S_Name, S_Id
+FROM Student
+WHERE S_Id > 17;
+4.SELECT Student.S_Name, House.H_Name
+FROM Student
+JOIN House ON Student.H_No = House.H_Id;
+5.CREATE VIEW StudentNamesView AS
+SELECT S_Name
+FROM Student;
+6.
+DROP VIEW StudentNamesView;
+7.
+CREATE VIEW StudentNamesView AS
+SELECT S_Name
+FROM Student;
+8.CREATE SYNONYM StudentNames FOR StudentNamesView;
+
+
+
+
+
+
