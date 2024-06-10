@@ -1,0 +1,55 @@
+1.
+UPDATE Actors
+SET A_Salary = A_Salary * 1.1
+WHERE A_Salary >= 7000;
+
+
+SELECT A_Name, A_Salary * 0.9 AS Old_Salary, A_Salary AS New_Salary
+FROM Actors
+WHERE A_Salary >= 7000;
+2.
+SELECT CONCAT(A_Name, ' salary is ', A_Salary) AS Actor_Info
+FROM Actors;
+3.SELECT A_Name
+FROM Actors
+WHERE SUBSTRING(A_Name, 2, 1) = 'o';
+
+4.SELECT A_Name, A_Salary
+FROM Actors
+WHERE A_Gender = 'F'
+ORDER BY A_Salary DESC;
+
+5.SELECT SUM(A_Salary) AS Total_Salary
+FROM Actors
+JOIN MakeupArtist ON Actors.MArtist_Id = MakeupArtist.Artist_Id
+WHERE MakeupArtist.MArtist_Name = 'John';
+
+6.SELECT MAX(A_Salary) AS Max_Salary
+FROM Actors
+JOIN MakeupArtist ON Actors.MArtist_Id = MakeupArtist.Artist_Id
+WHERE MakeupArtist.MArtist_Name IN ('John', 'Jessica');
+
+7.SELECT MArtist_Id, COUNT(*) AS Assigned_Actors
+FROM Actors
+GROUP BY MArtist_Id;
+
+8.SELECT A_Name
+FROM Actors
+WHERE MArtist_Id > 1;
+
+9.SELECT A_Id, A_Name, A_Gender, A_Salary
+FROM Actors
+WHERE A_Salary > (SELECT AVG(A_Salary) FROM Actors);
+
+10.SELECT MArtist_Name
+FROM MakeupArtist
+WHERE MArtist_salary IN (SELECT DISTINCT A_Salary FROM Actors);
+
+11.CREATE VIEW HighSalaryActors AS
+SELECT A_Name
+FROM Actors
+WHERE A_Salary > 7000;
+
+
+
+
