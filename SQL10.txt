@@ -1,0 +1,66 @@
+PART 1
+1.
+SELECT 'Hello ADBMS Section A' AS greeting;
+2.
+
+3.SELECT 2 * 3 * 4 AS product;
+
+4.DECLARE
+    greeting_variable VARCHAR2(20) := 'Hello World';
+BEGIN
+    DBMS_OUTPUT.PUT_LINE(UPPER(greeting_variable));
+END;
+
+5.DECLARE
+    larger_number INT := 15;
+    smaller_number INT := 7;
+    result INT;
+BEGIN
+    result := larger_number - smaller_number;
+    DBMS_OUTPUT.PUT_LINE('The result is: ' || result);
+END;
+
+6.SELECT AVG(number) AS average
+FROM (SELECT 12 AS number FROM dual
+      UNION ALL
+      SELECT 14 FROM dual
+      UNION ALL
+      SELECT 16 FROM dual
+      UNION ALL
+      SELECT 18 FROM dual);
+
+7.DECLARE
+    pi CONSTANT NUMBER := 3.14159;
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('The value of pi is: ' || TO_CHAR(pi));
+END;
+
+PART 2
+
+1.SELECT department_name
+FROM departments
+WHERE department_id = 10;
+
+2.SELECT LOWER(department_name) AS lower_case_department_name
+FROM departments
+WHERE department_id = 20;
+
+3.SELECT ename, sal + 250 AS incremented_salary
+FROM employees
+WHERE ename = 'SMITH';
+
+4.SELECT hiredate
+FROM employees
+WHERE ename = 'KING';
+
+5.SELECT SUM(sal) AS total_salary
+FROM employees;
+
+6.SELECT ename, sal, NVL(comm, 0) AS commission
+FROM employees
+WHERE ename = 'ALLEN';
+
+7.SELECT *
+FROM employees
+WHERE ename LIKE '%TT%';
+
