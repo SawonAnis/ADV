@@ -1,1 +1,1 @@
-  ADVANCE DATABASE course project report and code.
+  ADVANCE DATABASE course project report and SQL code.
