@@ -1,0 +1,46 @@
+1.
+
+DECLARE
+  CURSOR salgrade_cursor IS
+    SELECT *
+    FROM scott.salgrade;
+
+BEGIN
+  FOR salgrade_rec IN salgrade_cursor
+  LOOP
+
+    DBMS_OUTPUT.PUT_LINE('Grade: ' || salgrade_rec.grade ||
+                         ', Min Salary: ' || salgrade_rec.losal ||
+                         ', Max Salary: ' || salgrade_rec.hisal);
+  END LOOP;
+
+  CLOSE salgrade_cursor;
+END;
+
+2.
+
+DECLARE
+  TYPE EmployeeRecord IS RECORD (
+    emp_id    scott.emp.empno%TYPE,
+    emp_name  scott.emp.ename%TYPE,
+    emp_job   scott.emp.job%TYPE,
+    emp_hiredate scott.emp.hiredate%TYPE
+  );
+
+  emp_data EmployeeRecord;
+
+
+BEGIN
+
+  SELECT empno, ename, job, hiredate
+  INTO emp_data
+  FROM scott.emp
+  WHERE empno = 7654;
+
+  DBMS_OUTPUT.PUT_LINE('Employee ID: ' || emp_data.emp_id ||
+                       ', Employee Name: ' || emp_data.emp_name ||
+                       ', Job: ' || emp_data.emp_job ||
+                       ', Hire Date: ' || emp_data.emp_hiredate);
+END;
+
+
