@@ -1,0 +1,35 @@
+1.
+
+CREATE TRIGGER after_salgrade_insert
+AFTER INSERT ON salgrade
+FOR EACH ROW
+BEGIN
+    SELECT 'New Row Added' AS output;
+END;
+
+
+
+2.
+
+CREATE OR REPLACE PACKAGE SalGradePackage AS
+    PROCEDURE DisplayGrade(losal IN NUMBER, hisal IN NUMBER);
+END SalGradePackage;
+
+
+CREATE OR REPLACE PACKAGE BODY SalGradePackage AS
+    PROCEDURE DisplayGrade(losal IN NUMBER, hisal IN NUMBER) IS
+        grade_name VARCHAR2(20);
+    BEGIN
+        SELECT grade INTO grade_name
+        FROM salgrade
+        WHERE losal <= losal AND hisal >= hisal;
+
+        DBMS_OUTPUT.PUT_LINE('Grade: ' || grade_name);
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            DBMS_OUTPUT.PUT_LINE('No grade found for the given salary range.');
+    END DisplayGrade;
+END SalGradePackage;
+
+
+
