@@ -1,0 +1,65 @@
+1.
+BEGIN
+  FOR i IN 1..3 LOOP
+    SELECT sal INTO v_sal
+    FROM emp
+    WHERE ename = 'JONES';
+    
+    
+    DBMS_OUTPUT.PUT_LINE('Employee JONES Salary: ' || v_sal);
+  END LOOP;
+END;
+
+
+2.DECLARE
+  i NUMBER := 1;
+BEGIN
+  WHILE i <= 3 LOOP
+    SELECT sal INTO v_sal
+    FROM emp
+    WHERE ename = 'JONES';
+ 
+    DBMS_OUTPUT.PUT_LINE('Employee JONES Salary: ' || v_sal);
+    
+    i := i + 1;
+  END LOOP;
+END;
+
+3.
+BEGIN
+  FOR i IN 1..3 LOOP
+    SELECT sal INTO v_sal
+    FROM emp
+    WHERE ename = 'JONES';
+
+    DBMS_OUTPUT.PUT_LINE('Employee JONES Salary: ' || v_sal);
+  END LOOP;
+END;
+
+
+4.
+CREATE OR REPLACE FUNCTION GetTotalDepartments RETURN NUMBER IS
+  v_count NUMBER;
+BEGIN
+  SELECT COUNT(DISTINCT department_id) INTO v_count
+  FROM emp;
+  
+  RETURN v_count;
+END;
+
+
+5.CREATE OR REPLACE PROCEDURE UpdateAllenSalary IS
+BEGIN
+  UPDATE emp
+  SET sal = 100
+  WHERE ename = 'ALLEN';
+  
+  COMMIT;
+END;
+
+
+
+
+
+
+
